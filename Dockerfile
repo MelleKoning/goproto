@@ -36,13 +36,13 @@ ARG PROTOC_GEN_GRPC_VERSION
 RUN go install google.golang.org/grpc/cmd/protoc-gen-go-grpc@${PROTOC_GEN_GRPC_VERSION}
 
 # Final stage: Create the final image
-FROM scratch
-ENV PATH="/go/bin:${PATH}"
+FROM golang:1.23
+# ENV PATH="/go/bin:${PATH}"
 # Copy the installed tools from the go-tools stage
-COPY --from=go-tools /go/bin/protoc-gen-go /go/bin/protoc-gen-go
-COPY --from=go-tools /go/bin/protoc-gen-go-grpc /go/bin/protoc-gen-go-grpc
+COPY --from=go-tools /go/bin/protoc-gen-go /usr/local/bin/protoc-gen-go
+COPY --from=go-tools /go/bin/protoc-gen-go-grpc /usr/local/bin/protoc-gen-go-grpc
 
 # Copy the protoc and grpc-web binaries from the builder stage
-COPY --from=builder /usr/bin/protoc /usr/bin/protoc
-COPY --from=builder /usr/bin/protoc-gen-grpc-web /usr/bin/protoc-gen-grpc-web
-COPY --from=builder /usr/include /usr/include
+COPY --from=builder /usr/bin/protoc /usr/local/bin/protoc
+COPY --from=builder /usr/bin/protoc-gen-grpc-web /usr/local/bin/protoc-gen-grpc-web
+COPY --from=builder /usr/include /usr/local/include

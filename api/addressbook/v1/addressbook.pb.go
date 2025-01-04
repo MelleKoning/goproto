@@ -2,7 +2,7 @@
 // versions:
 // 	protoc-gen-go v1.36.1
 // 	protoc        v5.29.2
-// source: api/addressbook/v1/addressbook.proto
+// source: addressbook.proto
 
 package addressbook
 
@@ -57,11 +57,11 @@ func (x PhoneType) String() string {
 }
 
 func (PhoneType) Descriptor() protoreflect.EnumDescriptor {
-	return file_api_addressbook_v1_addressbook_proto_enumTypes[0].Descriptor()
+	return file_addressbook_proto_enumTypes[0].Descriptor()
 }
 
 func (PhoneType) Type() protoreflect.EnumType {
-	return &file_api_addressbook_v1_addressbook_proto_enumTypes[0]
+	return &file_addressbook_proto_enumTypes[0]
 }
 
 func (x PhoneType) Number() protoreflect.EnumNumber {
@@ -70,7 +70,51 @@ func (x PhoneType) Number() protoreflect.EnumNumber {
 
 // Deprecated: Use PhoneType.Descriptor instead.
 func (PhoneType) EnumDescriptor() ([]byte, []int) {
-	return file_api_addressbook_v1_addressbook_proto_rawDescGZIP(), []int{0}
+	return file_addressbook_proto_rawDescGZIP(), []int{0}
+}
+
+type Test struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Name          string                 `protobuf:"bytes,1,opt,name=name,proto3" json:"name,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *Test) Reset() {
+	*x = Test{}
+	mi := &file_addressbook_proto_msgTypes[0]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *Test) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*Test) ProtoMessage() {}
+
+func (x *Test) ProtoReflect() protoreflect.Message {
+	mi := &file_addressbook_proto_msgTypes[0]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use Test.ProtoReflect.Descriptor instead.
+func (*Test) Descriptor() ([]byte, []int) {
+	return file_addressbook_proto_rawDescGZIP(), []int{0}
+}
+
+func (x *Test) GetName() string {
+	if x != nil {
+		return x.Name
+	}
+	return ""
 }
 
 type Person struct {
@@ -79,6 +123,7 @@ type Person struct {
 	Id            int32                  `protobuf:"varint,2,opt,name=id,proto3" json:"id,omitempty"` // Unique ID number for this person.
 	Email         string                 `protobuf:"bytes,3,opt,name=email,proto3" json:"email,omitempty"`
 	Phones        []*Person_PhoneNumber  `protobuf:"bytes,4,rep,name=phones,proto3" json:"phones,omitempty"`
+	Test          *Test                  `protobuf:"bytes,6,opt,name=test,proto3" json:"test,omitempty"`
 	LastUpdated   *timestamppb.Timestamp `protobuf:"bytes,5,opt,name=last_updated,json=lastUpdated,proto3" json:"last_updated,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
@@ -86,7 +131,7 @@ type Person struct {
 
 func (x *Person) Reset() {
 	*x = Person{}
-	mi := &file_api_addressbook_v1_addressbook_proto_msgTypes[0]
+	mi := &file_addressbook_proto_msgTypes[1]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -98,7 +143,7 @@ func (x *Person) String() string {
 func (*Person) ProtoMessage() {}
 
 func (x *Person) ProtoReflect() protoreflect.Message {
-	mi := &file_api_addressbook_v1_addressbook_proto_msgTypes[0]
+	mi := &file_addressbook_proto_msgTypes[1]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -111,7 +156,7 @@ func (x *Person) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use Person.ProtoReflect.Descriptor instead.
 func (*Person) Descriptor() ([]byte, []int) {
-	return file_api_addressbook_v1_addressbook_proto_rawDescGZIP(), []int{0}
+	return file_addressbook_proto_rawDescGZIP(), []int{1}
 }
 
 func (x *Person) GetName() string {
@@ -142,6 +187,13 @@ func (x *Person) GetPhones() []*Person_PhoneNumber {
 	return nil
 }
 
+func (x *Person) GetTest() *Test {
+	if x != nil {
+		return x.Test
+	}
+	return nil
+}
+
 func (x *Person) GetLastUpdated() *timestamppb.Timestamp {
 	if x != nil {
 		return x.LastUpdated
@@ -159,7 +211,7 @@ type AddressBook struct {
 
 func (x *AddressBook) Reset() {
 	*x = AddressBook{}
-	mi := &file_api_addressbook_v1_addressbook_proto_msgTypes[1]
+	mi := &file_addressbook_proto_msgTypes[2]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -171,7 +223,7 @@ func (x *AddressBook) String() string {
 func (*AddressBook) ProtoMessage() {}
 
 func (x *AddressBook) ProtoReflect() protoreflect.Message {
-	mi := &file_api_addressbook_v1_addressbook_proto_msgTypes[1]
+	mi := &file_addressbook_proto_msgTypes[2]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -184,7 +236,7 @@ func (x *AddressBook) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use AddressBook.ProtoReflect.Descriptor instead.
 func (*AddressBook) Descriptor() ([]byte, []int) {
-	return file_api_addressbook_v1_addressbook_proto_rawDescGZIP(), []int{1}
+	return file_addressbook_proto_rawDescGZIP(), []int{2}
 }
 
 func (x *AddressBook) GetPeople() []*Person {
@@ -202,7 +254,7 @@ type AddressBookRequest struct {
 
 func (x *AddressBookRequest) Reset() {
 	*x = AddressBookRequest{}
-	mi := &file_api_addressbook_v1_addressbook_proto_msgTypes[2]
+	mi := &file_addressbook_proto_msgTypes[3]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -214,7 +266,7 @@ func (x *AddressBookRequest) String() string {
 func (*AddressBookRequest) ProtoMessage() {}
 
 func (x *AddressBookRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_api_addressbook_v1_addressbook_proto_msgTypes[2]
+	mi := &file_addressbook_proto_msgTypes[3]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -227,7 +279,7 @@ func (x *AddressBookRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use AddressBookRequest.ProtoReflect.Descriptor instead.
 func (*AddressBookRequest) Descriptor() ([]byte, []int) {
-	return file_api_addressbook_v1_addressbook_proto_rawDescGZIP(), []int{2}
+	return file_addressbook_proto_rawDescGZIP(), []int{3}
 }
 
 type AddressBookResponse struct {
@@ -239,7 +291,7 @@ type AddressBookResponse struct {
 
 func (x *AddressBookResponse) Reset() {
 	*x = AddressBookResponse{}
-	mi := &file_api_addressbook_v1_addressbook_proto_msgTypes[3]
+	mi := &file_addressbook_proto_msgTypes[4]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -251,7 +303,7 @@ func (x *AddressBookResponse) String() string {
 func (*AddressBookResponse) ProtoMessage() {}
 
 func (x *AddressBookResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_api_addressbook_v1_addressbook_proto_msgTypes[3]
+	mi := &file_addressbook_proto_msgTypes[4]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -264,7 +316,7 @@ func (x *AddressBookResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use AddressBookResponse.ProtoReflect.Descriptor instead.
 func (*AddressBookResponse) Descriptor() ([]byte, []int) {
-	return file_api_addressbook_v1_addressbook_proto_rawDescGZIP(), []int{3}
+	return file_addressbook_proto_rawDescGZIP(), []int{4}
 }
 
 func (x *AddressBookResponse) GetAddressbook() *AddressBook {
@@ -284,7 +336,7 @@ type Person_PhoneNumber struct {
 
 func (x *Person_PhoneNumber) Reset() {
 	*x = Person_PhoneNumber{}
-	mi := &file_api_addressbook_v1_addressbook_proto_msgTypes[4]
+	mi := &file_addressbook_proto_msgTypes[5]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -296,7 +348,7 @@ func (x *Person_PhoneNumber) String() string {
 func (*Person_PhoneNumber) ProtoMessage() {}
 
 func (x *Person_PhoneNumber) ProtoReflect() protoreflect.Message {
-	mi := &file_api_addressbook_v1_addressbook_proto_msgTypes[4]
+	mi := &file_addressbook_proto_msgTypes[5]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -309,7 +361,7 @@ func (x *Person_PhoneNumber) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use Person_PhoneNumber.ProtoReflect.Descriptor instead.
 func (*Person_PhoneNumber) Descriptor() ([]byte, []int) {
-	return file_api_addressbook_v1_addressbook_proto_rawDescGZIP(), []int{0, 0}
+	return file_addressbook_proto_rawDescGZIP(), []int{1, 0}
 }
 
 func (x *Person_PhoneNumber) GetNumber() string {
@@ -326,23 +378,26 @@ func (x *Person_PhoneNumber) GetType() PhoneType {
 	return PhoneType_PHONE_TYPE_UNSPECIFIED
 }
 
-var File_api_addressbook_v1_addressbook_proto protoreflect.FileDescriptor
+var File_addressbook_proto protoreflect.FileDescriptor
 
-var file_api_addressbook_v1_addressbook_proto_rawDesc = []byte{
-	0x0a, 0x24, 0x61, 0x70, 0x69, 0x2f, 0x61, 0x64, 0x64, 0x72, 0x65, 0x73, 0x73, 0x62, 0x6f, 0x6f,
-	0x6b, 0x2f, 0x76, 0x31, 0x2f, 0x61, 0x64, 0x64, 0x72, 0x65, 0x73, 0x73, 0x62, 0x6f, 0x6f, 0x6b,
-	0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x12, 0x0b, 0x61, 0x64, 0x64, 0x72, 0x65, 0x73, 0x73, 0x62,
-	0x6f, 0x6f, 0x6b, 0x1a, 0x1f, 0x67, 0x6f, 0x6f, 0x67, 0x6c, 0x65, 0x2f, 0x70, 0x72, 0x6f, 0x74,
-	0x6f, 0x62, 0x75, 0x66, 0x2f, 0x74, 0x69, 0x6d, 0x65, 0x73, 0x74, 0x61, 0x6d, 0x70, 0x2e, 0x70,
-	0x72, 0x6f, 0x74, 0x6f, 0x22, 0x8d, 0x02, 0x0a, 0x06, 0x50, 0x65, 0x72, 0x73, 0x6f, 0x6e, 0x12,
-	0x12, 0x0a, 0x04, 0x6e, 0x61, 0x6d, 0x65, 0x18, 0x01, 0x20, 0x01, 0x28, 0x09, 0x52, 0x04, 0x6e,
-	0x61, 0x6d, 0x65, 0x12, 0x0e, 0x0a, 0x02, 0x69, 0x64, 0x18, 0x02, 0x20, 0x01, 0x28, 0x05, 0x52,
-	0x02, 0x69, 0x64, 0x12, 0x14, 0x0a, 0x05, 0x65, 0x6d, 0x61, 0x69, 0x6c, 0x18, 0x03, 0x20, 0x01,
-	0x28, 0x09, 0x52, 0x05, 0x65, 0x6d, 0x61, 0x69, 0x6c, 0x12, 0x37, 0x0a, 0x06, 0x70, 0x68, 0x6f,
-	0x6e, 0x65, 0x73, 0x18, 0x04, 0x20, 0x03, 0x28, 0x0b, 0x32, 0x1f, 0x2e, 0x61, 0x64, 0x64, 0x72,
-	0x65, 0x73, 0x73, 0x62, 0x6f, 0x6f, 0x6b, 0x2e, 0x50, 0x65, 0x72, 0x73, 0x6f, 0x6e, 0x2e, 0x50,
-	0x68, 0x6f, 0x6e, 0x65, 0x4e, 0x75, 0x6d, 0x62, 0x65, 0x72, 0x52, 0x06, 0x70, 0x68, 0x6f, 0x6e,
-	0x65, 0x73, 0x12, 0x3d, 0x0a, 0x0c, 0x6c, 0x61, 0x73, 0x74, 0x5f, 0x75, 0x70, 0x64, 0x61, 0x74,
+var file_addressbook_proto_rawDesc = []byte{
+	0x0a, 0x11, 0x61, 0x64, 0x64, 0x72, 0x65, 0x73, 0x73, 0x62, 0x6f, 0x6f, 0x6b, 0x2e, 0x70, 0x72,
+	0x6f, 0x74, 0x6f, 0x12, 0x0b, 0x61, 0x64, 0x64, 0x72, 0x65, 0x73, 0x73, 0x62, 0x6f, 0x6f, 0x6b,
+	0x1a, 0x1f, 0x67, 0x6f, 0x6f, 0x67, 0x6c, 0x65, 0x2f, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x62, 0x75,
+	0x66, 0x2f, 0x74, 0x69, 0x6d, 0x65, 0x73, 0x74, 0x61, 0x6d, 0x70, 0x2e, 0x70, 0x72, 0x6f, 0x74,
+	0x6f, 0x22, 0x1a, 0x0a, 0x04, 0x54, 0x65, 0x73, 0x74, 0x12, 0x12, 0x0a, 0x04, 0x6e, 0x61, 0x6d,
+	0x65, 0x18, 0x01, 0x20, 0x01, 0x28, 0x09, 0x52, 0x04, 0x6e, 0x61, 0x6d, 0x65, 0x22, 0xb4, 0x02,
+	0x0a, 0x06, 0x50, 0x65, 0x72, 0x73, 0x6f, 0x6e, 0x12, 0x12, 0x0a, 0x04, 0x6e, 0x61, 0x6d, 0x65,
+	0x18, 0x01, 0x20, 0x01, 0x28, 0x09, 0x52, 0x04, 0x6e, 0x61, 0x6d, 0x65, 0x12, 0x0e, 0x0a, 0x02,
+	0x69, 0x64, 0x18, 0x02, 0x20, 0x01, 0x28, 0x05, 0x52, 0x02, 0x69, 0x64, 0x12, 0x14, 0x0a, 0x05,
+	0x65, 0x6d, 0x61, 0x69, 0x6c, 0x18, 0x03, 0x20, 0x01, 0x28, 0x09, 0x52, 0x05, 0x65, 0x6d, 0x61,
+	0x69, 0x6c, 0x12, 0x37, 0x0a, 0x06, 0x70, 0x68, 0x6f, 0x6e, 0x65, 0x73, 0x18, 0x04, 0x20, 0x03,
+	0x28, 0x0b, 0x32, 0x1f, 0x2e, 0x61, 0x64, 0x64, 0x72, 0x65, 0x73, 0x73, 0x62, 0x6f, 0x6f, 0x6b,
+	0x2e, 0x50, 0x65, 0x72, 0x73, 0x6f, 0x6e, 0x2e, 0x50, 0x68, 0x6f, 0x6e, 0x65, 0x4e, 0x75, 0x6d,
+	0x62, 0x65, 0x72, 0x52, 0x06, 0x70, 0x68, 0x6f, 0x6e, 0x65, 0x73, 0x12, 0x25, 0x0a, 0x04, 0x74,
+	0x65, 0x73, 0x74, 0x18, 0x06, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x11, 0x2e, 0x61, 0x64, 0x64, 0x72,
+	0x65, 0x73, 0x73, 0x62, 0x6f, 0x6f, 0x6b, 0x2e, 0x54, 0x65, 0x73, 0x74, 0x52, 0x04, 0x74, 0x65,
+	0x73, 0x74, 0x12, 0x3d, 0x0a, 0x0c, 0x6c, 0x61, 0x73, 0x74, 0x5f, 0x75, 0x70, 0x64, 0x61, 0x74,
 	0x65, 0x64, 0x18, 0x05, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x1a, 0x2e, 0x67, 0x6f, 0x6f, 0x67, 0x6c,
 	0x65, 0x2e, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x62, 0x75, 0x66, 0x2e, 0x54, 0x69, 0x6d, 0x65, 0x73,
 	0x74, 0x61, 0x6d, 0x70, 0x52, 0x0b, 0x6c, 0x61, 0x73, 0x74, 0x55, 0x70, 0x64, 0x61, 0x74, 0x65,
@@ -379,65 +434,67 @@ var file_api_addressbook_v1_addressbook_proto_rawDesc = []byte{
 }
 
 var (
-	file_api_addressbook_v1_addressbook_proto_rawDescOnce sync.Once
-	file_api_addressbook_v1_addressbook_proto_rawDescData = file_api_addressbook_v1_addressbook_proto_rawDesc
+	file_addressbook_proto_rawDescOnce sync.Once
+	file_addressbook_proto_rawDescData = file_addressbook_proto_rawDesc
 )
 
-func file_api_addressbook_v1_addressbook_proto_rawDescGZIP() []byte {
-	file_api_addressbook_v1_addressbook_proto_rawDescOnce.Do(func() {
-		file_api_addressbook_v1_addressbook_proto_rawDescData = protoimpl.X.CompressGZIP(file_api_addressbook_v1_addressbook_proto_rawDescData)
+func file_addressbook_proto_rawDescGZIP() []byte {
+	file_addressbook_proto_rawDescOnce.Do(func() {
+		file_addressbook_proto_rawDescData = protoimpl.X.CompressGZIP(file_addressbook_proto_rawDescData)
 	})
-	return file_api_addressbook_v1_addressbook_proto_rawDescData
+	return file_addressbook_proto_rawDescData
 }
 
-var file_api_addressbook_v1_addressbook_proto_enumTypes = make([]protoimpl.EnumInfo, 1)
-var file_api_addressbook_v1_addressbook_proto_msgTypes = make([]protoimpl.MessageInfo, 5)
-var file_api_addressbook_v1_addressbook_proto_goTypes = []any{
+var file_addressbook_proto_enumTypes = make([]protoimpl.EnumInfo, 1)
+var file_addressbook_proto_msgTypes = make([]protoimpl.MessageInfo, 6)
+var file_addressbook_proto_goTypes = []any{
 	(PhoneType)(0),                // 0: addressbook.PhoneType
-	(*Person)(nil),                // 1: addressbook.Person
-	(*AddressBook)(nil),           // 2: addressbook.AddressBook
-	(*AddressBookRequest)(nil),    // 3: addressbook.AddressBookRequest
-	(*AddressBookResponse)(nil),   // 4: addressbook.AddressBookResponse
-	(*Person_PhoneNumber)(nil),    // 5: addressbook.Person.PhoneNumber
-	(*timestamppb.Timestamp)(nil), // 6: google.protobuf.Timestamp
+	(*Test)(nil),                  // 1: addressbook.Test
+	(*Person)(nil),                // 2: addressbook.Person
+	(*AddressBook)(nil),           // 3: addressbook.AddressBook
+	(*AddressBookRequest)(nil),    // 4: addressbook.AddressBookRequest
+	(*AddressBookResponse)(nil),   // 5: addressbook.AddressBookResponse
+	(*Person_PhoneNumber)(nil),    // 6: addressbook.Person.PhoneNumber
+	(*timestamppb.Timestamp)(nil), // 7: google.protobuf.Timestamp
 }
-var file_api_addressbook_v1_addressbook_proto_depIdxs = []int32{
-	5, // 0: addressbook.Person.phones:type_name -> addressbook.Person.PhoneNumber
-	6, // 1: addressbook.Person.last_updated:type_name -> google.protobuf.Timestamp
-	1, // 2: addressbook.AddressBook.people:type_name -> addressbook.Person
-	2, // 3: addressbook.AddressBookResponse.addressbook:type_name -> addressbook.AddressBook
-	0, // 4: addressbook.Person.PhoneNumber.type:type_name -> addressbook.PhoneType
-	3, // 5: addressbook.Addresses.GetAddressBook:input_type -> addressbook.AddressBookRequest
-	4, // 6: addressbook.Addresses.GetAddressBook:output_type -> addressbook.AddressBookResponse
-	6, // [6:7] is the sub-list for method output_type
-	5, // [5:6] is the sub-list for method input_type
-	5, // [5:5] is the sub-list for extension type_name
-	5, // [5:5] is the sub-list for extension extendee
-	0, // [0:5] is the sub-list for field type_name
+var file_addressbook_proto_depIdxs = []int32{
+	6, // 0: addressbook.Person.phones:type_name -> addressbook.Person.PhoneNumber
+	1, // 1: addressbook.Person.test:type_name -> addressbook.Test
+	7, // 2: addressbook.Person.last_updated:type_name -> google.protobuf.Timestamp
+	2, // 3: addressbook.AddressBook.people:type_name -> addressbook.Person
+	3, // 4: addressbook.AddressBookResponse.addressbook:type_name -> addressbook.AddressBook
+	0, // 5: addressbook.Person.PhoneNumber.type:type_name -> addressbook.PhoneType
+	4, // 6: addressbook.Addresses.GetAddressBook:input_type -> addressbook.AddressBookRequest
+	5, // 7: addressbook.Addresses.GetAddressBook:output_type -> addressbook.AddressBookResponse
+	7, // [7:8] is the sub-list for method output_type
+	6, // [6:7] is the sub-list for method input_type
+	6, // [6:6] is the sub-list for extension type_name
+	6, // [6:6] is the sub-list for extension extendee
+	0, // [0:6] is the sub-list for field type_name
 }
 
-func init() { file_api_addressbook_v1_addressbook_proto_init() }
-func file_api_addressbook_v1_addressbook_proto_init() {
-	if File_api_addressbook_v1_addressbook_proto != nil {
+func init() { file_addressbook_proto_init() }
+func file_addressbook_proto_init() {
+	if File_addressbook_proto != nil {
 		return
 	}
 	type x struct{}
 	out := protoimpl.TypeBuilder{
 		File: protoimpl.DescBuilder{
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
-			RawDescriptor: file_api_addressbook_v1_addressbook_proto_rawDesc,
+			RawDescriptor: file_addressbook_proto_rawDesc,
 			NumEnums:      1,
-			NumMessages:   5,
+			NumMessages:   6,
 			NumExtensions: 0,
 			NumServices:   1,
 		},
-		GoTypes:           file_api_addressbook_v1_addressbook_proto_goTypes,
-		DependencyIndexes: file_api_addressbook_v1_addressbook_proto_depIdxs,
-		EnumInfos:         file_api_addressbook_v1_addressbook_proto_enumTypes,
-		MessageInfos:      file_api_addressbook_v1_addressbook_proto_msgTypes,
+		GoTypes:           file_addressbook_proto_goTypes,
+		DependencyIndexes: file_addressbook_proto_depIdxs,
+		EnumInfos:         file_addressbook_proto_enumTypes,
+		MessageInfos:      file_addressbook_proto_msgTypes,
 	}.Build()
-	File_api_addressbook_v1_addressbook_proto = out.File
-	file_api_addressbook_v1_addressbook_proto_rawDesc = nil
-	file_api_addressbook_v1_addressbook_proto_goTypes = nil
-	file_api_addressbook_v1_addressbook_proto_depIdxs = nil
+	File_addressbook_proto = out.File
+	file_addressbook_proto_rawDesc = nil
+	file_addressbook_proto_goTypes = nil
+	file_addressbook_proto_depIdxs = nil
 }

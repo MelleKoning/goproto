@@ -1,0 +1,3 @@
+package goproto
+
+func main() {}
