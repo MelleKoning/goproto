@@ -1,9 +1,9 @@
 syntax = "proto3";
-package tutorial;
+package addressbook;
 
 import "google/protobuf/timestamp.proto";
 
-option go_package = ".;pb";
+option go_package = ".;addressbook";
 
 message Person {
     string name = 1;
@@ -30,4 +30,14 @@ message Person {
   // Our address book file is just one of these.
   message AddressBook {
     repeated Person people = 1;
+  }
+
+  message AddressBookRequest {}
+
+  message AddressBookResponse {
+    AddressBook addressbook = 1;
+  }
+
+  service Addresses {
+    rpc GetAddressBook(AddressBookRequest) returns (AddressBookResponse) {}
   }

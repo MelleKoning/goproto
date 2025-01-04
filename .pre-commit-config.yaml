@@ -15,3 +15,8 @@ repos:
     hooks:
     -   id: markdownlint-fix
         args: [ "--fix"]
+-   repo: https://github.com/bufbuild/buf
+    rev: v1.48.0
+    hooks:
+      - id: buf-lint
+        args: [--error-format=json]
