@@ -10,7 +10,7 @@ This repository is aimed to do just that. By providing a docker image having a p
 
 ## Suggest enhancements
 
-For help in syntax checking and writing the markdown, the repository makes use of [Pre-commit](https://pre-commit.com/). How to install this tool on your environment is out of scope for this documentation, but it is assumed you have pre-commit installed if you want to contribute to this repository. Please ensure to run `pre-commit run -a` before suggesting an update via a pull request.
+For help in syntax checking and writing the markdown, the repository makes use of [Pre-commit](https://pre-commit.com/). How to install this tool on your environment is out of scope for this documentation, but it is assumed you have `pre-commit` installed if you want to contribute to this repository. Please ensure to run `pre-commit run -a` before suggesting an update via a pull request.
 
 ## Example addressbook.proto
 
@@ -19,11 +19,18 @@ The `addressbook.proto` example is copied from [protobuf buffers basics:GO tutor
 You can (re-)generate the `addressbook.pb.go` file by running the consecutive commands:
 
 `make docker` -> creates the docker image with the protocol buffers golang tooling
+
 `make generate` -> uses the generated docker image with the go protobuffers tooling
 
 The above tutorial also shows the way the generated golang structs can then be used to Marshal and Unmarshal data for writing to files.
 
-We also added a simple remote procedure call to retrieve the contents of the entire addressbook, this is for ensuring the grpc stubs are also created.
+## Example grpc client and service stubs
+
+We also added a simple remote procedure call to retrieve the contents of the entire addressbook, this is for ensuring the grpc service stubs are also created.
+
+## Addition of grpc-web in dockerfile
+
+The Dockerfile does contain a version of `protoc-gen-grpc-web`. This is for generating javascript compatible grpc communcation but an example is not (yet) added to the `make generate` command. More information can be found at [protoc-gen-grpc-web](https://github.com/grpc/grpc-web)
 
 ## buf linter
 
