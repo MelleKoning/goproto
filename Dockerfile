@@ -1,20 +1,21 @@
 FROM golang:1.23 AS builder
 ARG PROTOC_GEN_GO_VERSION=1.36.1
 ARG PROTOC_GEN_GRPC_VERSION=v1.5.1
-# Install protoc
-RUN apt-get update
-RUN apt-get install -y zip
+# Install zip to be able to unzip downloaded packages
+RUN apt-get update && apt-get install -y zip && rm -rf /var/lib/apt/lists/*
 
+# Install protoc
 # Download proto zip
 ENV PROTOCVERSION=29.2
 ENV PROTOC_ZIP=protoc-${PROTOCVERSION}-linux-x86_64.zip
-RUN curl -OL https://github.com/protocolbuffers/protobuf/releases/download/v${PROTOCVERSION}/${PROTOC_ZIP}
-RUN unzip -o ${PROTOC_ZIP} -d ./proto
-RUN chmod 755 -R ./proto/bin
+RUN curl -OL https://github.com/protocolbuffers/protobuf/releases/download/v${PROTOCVERSION}/${PROTOC_ZIP} && \
+    unzip -o ${PROTOC_ZIP} -d ./proto && \
+    chmod 755 -R ./proto/bin && \
+    rm ${PROTOC_ZIP}
 ENV BASE=/usr
 # Copy into path
-RUN cp ./proto/bin/protoc ${BASE}/bin/
-RUN cp -R ./proto/include/* ${BASE}/include/
+RUN cp ./proto/bin/protoc ${BASE}/bin/ && \
+    cp -R ./proto/include/* ${BASE}/include/
 
 
 # Download protoc-gen-grpc-web
@@ -35,8 +36,8 @@ ARG PROTOC_GEN_GRPC_VERSION
 RUN go install google.golang.org/grpc/cmd/protoc-gen-go-grpc@${PROTOC_GEN_GRPC_VERSION}
 
 # Final stage: Create the final image
-FROM golang:1.23
-
+FROM scratch
+ENV PATH="/go/bin:${PATH}"
 # Copy the installed tools from the go-tools stage
 COPY --from=go-tools /go/bin/protoc-gen-go /go/bin/protoc-gen-go
 COPY --from=go-tools /go/bin/protoc-gen-go-grpc /go/bin/protoc-gen-go-grpc
